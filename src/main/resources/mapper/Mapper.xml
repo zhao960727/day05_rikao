@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyf.dao.BookDao">
+	
+	
+	<select  id="selectAll"  resultType="com.zyf.entity.Book"  >
+		SELECT * FROM book 
+		<where>
+			<if test="bname!=null and bname!=''"> and bname LIKE CONCAT ('%',#{bname},'%')</if>
+		</where>
+		
+	</select>
+	
+	<insert id="addError" >
+		insert into error_record (bid,errorinfo) values (#{bid},#{errorinfo})
+	</insert>
+	
+	<insert id="addBook">
+	
+		INSERT INTO book (bname,type,phone,author,popular)  VALUES (#{bname},#{type},#{phone},#{author},#{popular});
+	</insert>
+</mapper>
